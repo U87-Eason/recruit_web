@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.css') }}">
+    <style>
+        /* 为 <div class="list-group container-fluid"> 添加下边距 */
+        .list-group {
+            margin-bottom: 20px;
+        }
+
+        /* 为 <nav> 添加下边距 */
+        nav {
+            margin-bottom: 20px;
+        }
+        .nav-pills {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+{# 导航条 #}
+<ul class="nav nav-pills nav-fill container">
+  <li class="nav-item col-4">
+    <a class="nav-link active" href="#">首页</a>
+  </li>
+
+  <li class="nav-item col-8">
+    <a class="nav-link disabled">python岗位相关数据</a>
+  </li>
+</ul>
+
+    {# 数据展示条 #}
+    {% for item in p.items %}
+    <div class="list-group container-fluid">
+        <a href="/details/{{ item.id }}" class="list-group-item list-group-item-action container">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1"><strong>{{ item.name }}</strong></h5>
+            <small class="text-danger"><b>{{ item.money }}</b></small>
+        </div>
+          <div>
+              <h6 class="mb-1">{{ item.city }}| {{ item.time }} | {{item.degree}}  </h6>
+          </div>
+          <p class="mb-1">{{ item.skill }}</p>
+          <small class="text-muted">{{ item.companyname }}</small>
+          <small class="text-muted">{{ item.level }}</small>
+      </a>
+    </div>
+    {% endfor %}
+
+    {# 翻页功能 #}
+    <nav aria-label="Page navigation example">
+        <ul class="pagination container">
+        {# 上一页按钮 #}
+        <li class="page-item">
+          <a class="page-link" href="/index?page={{ p.prev_num }}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+
+        {# 中间页数按钮 #}
+        {% for i in range(1, p.pages) %}
+        {% if i == p.page %}
+            <li class="page-item active">
+            {% else %}
+            <li class="page-item">
+        {% endif %}
+            <a class="page-link" href="/index?page={{ i }}">{{ i }}</a></li>
+        {% endfor %}
+
+        <li class="page-item">
+          <a class="page-link" href="/index?page={{ p.next_num }}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+        </ul>
+    </nav>
+
+</body>
+</html>

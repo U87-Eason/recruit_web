@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.css') }}">
+    <style>
+        /* 为 <div class="list-group container-fluid"> 添加下边距 */
+        .list-group {
+            margin-bottom: 20px;
+        }
+
+        /* 为 <nav> 添加下边距 */
+        nav {
+            margin-bottom: 20px;
+        }
+
+        .nav-pills {
+            margin-bottom: 20px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    {# 导航条 #}
+<ul class="nav nav-pills nav-fill container">
+  <li class="nav-item col-4">
+    <a class="nav-link active" href="/index">首页</a>
+  </li>
+
+  <li class="nav-item col-8">
+    <a class="nav-link disabled">python岗位相关数据</a>
+  </li>
+</ul>
+
+<div class="card text-center container">
+  <div class="card-header w-100">
+    {{ position_data.name }}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">职责要求：</h5>
+    <p class="card-text">{{ position_data.detail }}</p>
+    <a href="{{ position_data.url }}" class="btn btn-primary">职位链接</a>
+  </div>
+  <div class="card-header w-100">
+    公司地址：{{ position_data.site }}
+  </div>
+</div>
+</body>
+</html>
+
+
