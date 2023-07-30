@@ -17,3 +17,9 @@ class Webtab(db.Model):
     site = db.Column(db.String(300))
     detail = db.Column(db.Text)
 
+
+class Userdata(db.Model):
+    __tablename__ = 'userdata'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(50))
+    password = db.Column(db.String(50))
