@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/layui.css') }}">
     <style>
         /* 为 <div class="list-group container-fluid"> 添加下边距 */
         .list-group {
@@ -25,15 +26,45 @@
 <body>
 
     {# 导航条 #}
-<ul class="nav nav-pills nav-fill container">
-  <li class="nav-item col-4">
-    <a class="nav-link active" href="/index">首页</a>
-  </li>
+{#<ul class="nav nav-pills nav-fill container">#}
+{#  <li class="nav-item col-4">#}
+{#    <a class="nav-link active" href="/index">首页</a>#}
+{#  </li>#}
+{##}
+{#  <li class="nav-item col-8">#}
+{#    <a class="nav-link disabled">python岗位相关数据</a>#}
+{#  </li>#}
+{#</ul>#}
 
-  <li class="nav-item col-8">
-    <a class="nav-link disabled">python岗位相关数据</a>
-  </li>
-</ul>
+<div class="layui-layout layui-layout-admin layui-nav-item">
+    <div class="layui-header">
+        <div class="layui-logo layui-hide-xs layui-bg-black">python相关数据</div>
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="/">首页</a></li>
+        </ul>
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item layui-hide layui-show-sm-inline-block">
+                {% if not user %}
+                    <a href="#">
+                        <img src="//unpkg.com/outeres@0.0.10/img/layui/icon-v2.png" class="layui-nav-img">
+                            登录
+                    </a>
+                    {% else %}
+                    <a href="javascript:;">
+                        <img src="//unpkg.com/outeres@0.0.10/img/layui/icon-v2.png" class="layui-nav-img">
+                            {{ user.name }}
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="{{ url_for('user.delete_user') }}">退出</a></dd>
+                    </dl>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</div>
+
+  <div style="height: 100px;"></div>
 
 <div class="card text-center container">
   <div class="card-header w-100">
@@ -42,12 +73,17 @@
   <div class="card-body">
     <h5 class="card-title">职责要求：</h5>
     <p class="card-text">{{ position_data.detail }}</p>
+      <div style="height: 20px;"></div>
     <a href="{{ position_data.url }}" class="btn btn-primary">职位链接</a>
   </div>
   <div class="card-header w-100">
     公司地址：{{ position_data.site }}
   </div>
 </div>
+
+
+
+<script src="{{ url_for('static',filename='js/layui.js') }}"></script>
 </body>
 </html>
 

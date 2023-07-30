@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页</title>
+    <link rel="stylesheet" href="/static/css/layui.css">
+</head>
+<body>
+<style>
+    .demo-login-container {
+        width: 320px;
+        margin: 21px auto 0;
+    }
+
+    .demo-login-other .layui-icon {
+        position: relative;
+        display: inline-block;
+        margin: 0 2px;
+        top: 2px;
+        font-size: 26px;
+    }
+</style>
+<form class="layui-form" method="post">
+    <div class="demo-login-container">
+        <div class="layui-form-item">
+            <div class="layui-input-wrap">
+                <div class="layui-input-prefix">
+                    <i class="layui-icon layui-icon-cellphone"></i>
+                </div>
+                <input type="text" name="mobile" value="" lay-verify="required" placeholder="用户名"
+                       lay-reqtext="请填写用户名" autocomplete="off" class="layui-input" lay-affix="clear">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-wrap">
+                <div class="layui-input-prefix">
+                    <i class="layui-icon layui-icon-password"></i>
+                </div>
+                <input type="password" name="password" value="" lay-verify="required" placeholder="密   码"
+                       lay-reqtext="请填写密码" autocomplete="off" class="layui-input" lay-affix="eye">
+            </div>
+        </div>
+
+        <div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="alert-messages">
+                    {% for message in messages %}
+                        <div class="alert-message" style="color: red">{{ message }}</div>
+                    {% endfor %}
+                    </div>
+
+                {% endif %}
+                {% endwith %}
+        </div>
+
+        <div class="layui-form-item">
+            <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="demo-login">登录</button>
+        </div>
+        <div>
+            <i class="layui-font-16">还没有注册账户？</i><a href="/register" class="layui-btn layui-col-md-offset3 " target="_blank">点击注册</a>
+        </div>
+    </div>
+</form>
+
+<script src="/static/js/layui.js"></script>
+<script>
+    layui.use(function () {
+        var form = layui.form;
+        var layer = layui.layer;
+    });
+</script>
+</body>
+</html>
