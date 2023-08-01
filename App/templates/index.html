@@ -73,7 +73,7 @@
             <small class="text-danger"><b>{{ item.money }}</b></small>
         </div>
           <div>
-              <h6 class="mb-1">{{ item.city }}| {{ item.time }} | {{item.degree}}  </h6>
+              <h6 class="mb-1">{{ item.city }} | {{ item.time }} | {{item.degree}}  </h6>
           </div>
           <p class="mb-1">{{ item.skill }}</p>
           <small class="text-muted">{{ item.companyname }}</small>
@@ -93,7 +93,7 @@
         </li>
 
         {# 中间页数按钮 #}
-        {% for i in range(1, p.pages) %}
+        {% for i in range(1, p.pages + 1) %}
         {% if i == p.page %}
             <li class="page-item active">
             {% else %}
